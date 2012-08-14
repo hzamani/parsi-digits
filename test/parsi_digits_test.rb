@@ -15,10 +15,18 @@ class ParsiDigitsTest < Test::Unit::TestCase
     assert_equal 9876543210, "۹۸۷۶۵۴۳۲۱۰".to_i
     assert_equal 9876543210, "9876543210".to_i
   end
-  
+
   def test_parsi_string_to_f
     assert_equal 0.987654321, "۰/۹۸۷۶۵۴۳۲۱".to_f
     assert_equal 0.987654321, "0.987654321".to_f
+  end
+
+  def test_string_remove_delimiters
+    assert_equal "۹۸۷۶۵۴۳۲۱۰", "۹٫۸۷۶٫۵۴۳٫۲۱۰".remove_delimiters
+    assert_equal "۹۸۷۶۵۴۳۲۱۰", "۹٫۸۷۶٫۵۴۳٫۲۱۰".remove_delimiters(locale: :fa)
+    assert_equal "9876543210", "9,876,543,210".remove_delimiters(locale: :en)
+    assert_equal "9876543210", "9_876_543_210".remove_delimiters(delimiter: '_')
+    assert_equal "9876543210", "9,876,543,210".remove_delimiters(delimiter: ',')
   end
   
   def test_integer_with_parsi_digits
