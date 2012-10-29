@@ -1,2 +1,2 @@
 require 'test/unit'
-require 'parsi_digits'
+require 'parsi-digits'
